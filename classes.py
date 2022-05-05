@@ -118,9 +118,3 @@ class Dealer:
         else:
 
             print("\nThe dealer stays")
-
-
-# dealer = Dealer()
-# dealer.get_cards()
-# dealer.reveal_card()
-
