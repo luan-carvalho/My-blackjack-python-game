@@ -66,6 +66,16 @@ class Dealer:
         self.deck = Deck()
         self.cards = []
 
+    def sum_cards(self):
+
+        my_sum = 0
+
+        for card in self.cards:
+
+            my_sum += card.value
+
+        return my_sum
+
     def deal_cards(self, number_of_cards):
 
         if number_of_cards == 1:
@@ -81,4 +91,36 @@ class Dealer:
                 cards.append(self.deck.get_one_card())
 
             return cards
+
+    def get_cards(self):
+
+        self.cards.append(self.deck.get_one_card())
+        self.cards[0].face_up = False
+        self.cards.append(self.deck.get_one_card())
+        print(f"\nDealer's cards: {self.cards}\n")
+
+    def reveal_card(self):
+
+        self.cards[0].face_up = True
+        print(f"\nDealer cards: {self.cards}\n")
+
+        while self.sum_cards() <= 17:
+
+            print("\nThe dealer hits")
+            self.cards.append(self.deck.get_one_card())
+            print(f"\nDealer's cards: {self.cards}")
+
+            if self.sum_cards() > 21:
+
+                print("\nThe dealer busted!!!")
+                break
+
+        else:
+
+            print("\nThe dealer stays")
+
+
+# dealer = Dealer()
+# dealer.get_cards()
+# dealer.reveal_card()
 
