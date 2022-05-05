@@ -57,3 +57,28 @@ class Deck:
 
         my_card = self.all_cards.pop(0)
         return my_card
+
+
+class Dealer:
+
+    def __init__(self):
+
+        self.deck = Deck()
+        self.cards = []
+
+    def deal_cards(self, number_of_cards):
+
+        if number_of_cards == 1:
+
+            return self.deck.get_one_card()
+
+        if number_of_cards > 1:
+
+            cards = []
+
+            for i in range(0, number_of_cards):
+
+                cards.append(self.deck.get_one_card())
+
+            return cards
+
