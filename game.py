@@ -1,9 +1,18 @@
 # This is the game it self
-
+from classes import *
 # Game logic
 
 # 1 Create the dealer and the player
+
+dealer = Dealer()
+player = Player()
+
 # 2 The  player bets and the dealer deals two cards for the player and for himself
+
+player.bet()
+dealer.deal_cards(player,2)
+dealer.get_cards()
+
 # 3 Check if the player has a blackjack hand (if yes, the game ends and the player wins 3:2)
 # 4 The player chooses his move(hit, stay, double-down or split)
 # 5 Check if the player busts
