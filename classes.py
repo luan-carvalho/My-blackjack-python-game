@@ -169,3 +169,91 @@ class Player:
                 self.round_bet = bet
                 self.money -= self.round_bet
                 break
+
+    
+    def player(self, dealer: Dealer):
+
+        while True:
+
+            try:
+
+                print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4-Split")
+
+                move = int(input("\nYour move: "))
+
+                if not(move in [1,2,3,4]):
+
+                    print("\nHey, choose a valid move.")
+                    x = 1/0 #forcing an error
+
+                elif move == 3 and self.bet > self.money:
+
+                    print("\nHey, you don't have money for a double-down.")
+                    x = 1/0
+
+                elif move == 4 and (self.cards[0].rank == self.cards[1].rank or self.money < self.bet):
+
+                    print("\nHey, you can't split. Check your hand or your money.")
+                    x = 1/0
+
+            except:
+
+                continue
+                
+            else:
+
+                if move == 1:
+
+                    dealer.deal_cards(self, 1)
+                    print(f"\nPlayer cards: {self.cards}")
+
+                    while True:
+
+                        print("1 - Hit\n2 - Stay")
+
+                        try:
+
+                            move = int(input("\nYour move: "))
+
+                            if not(move in [1,2]):
+
+                                print("\nHey, enter a valid move.")
+                                x = 1/0
+
+                        except:
+
+                            continue
+
+                        else:
+
+                            if move == 1:
+
+                                dealer.deal_cards(self, 1)
+                                print(f"\nPlayer cards: {self.cards}")
+                                continue
+                            
+                            if move == 2:
+
+                                print("\nthe player stays.")
+                                print(f"\nPlayer cards: {self.cards}")
+                                break
+
+                elif move == 2:
+
+                    print("\nThe player stays.")
+                    break
+
+                elif move == 3:
+
+                    print(f"\nThe player doubles-down.\nPlayer money: {self.money}")
+                    dealer.deal_cards(self, 1)
+                    print(f"\nPlayer cards: {self.cards}")
+
+                    if sum_cards(self.cards) > 21:
+
+                        print("\nThe player busted!!!")
+                        break
+
+                elif move == 4:
+
+                    pass
