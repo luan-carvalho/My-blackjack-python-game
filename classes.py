@@ -78,12 +78,14 @@ class Dealer:
 
                 player.cards.append(self.deck.get_one_card())
 
+        print(f"\nPlayer cards: {player.cards}")
+
     def get_cards(self):
 
         self.cards.append(self.deck.get_one_card())
         self.cards[0].face_up = False
         self.cards.append(self.deck.get_one_card())
-        print(f"\nDealer's cards: {self.cards}\n")
+        print(f"\nDealer's cards: {self.cards}")
 
     def reveal_card(self):
 
