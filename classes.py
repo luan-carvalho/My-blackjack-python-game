@@ -246,6 +246,8 @@ class Player:
                 elif move == 3:
 
                     print(f"\nThe player doubles-down.\nPlayer money: {self.money}")
+                    self.money -= self.round_bet
+                    self.round_bet = self.round_bet*2
                     dealer.deal_cards(self, 1)
                     print(f"\nPlayer cards: {self.cards}")
 
