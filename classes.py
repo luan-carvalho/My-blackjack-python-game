@@ -66,31 +66,18 @@ class Dealer:
         self.deck = Deck()
         self.cards = []
 
-    def sum_cards(self):
+    def deal_cards(self, player, number_of_cards):
 
-        my_sum = 0
-
-        for card in self.cards:
-
-            my_sum += card.value
-
-        return my_sum
-
-    def deal_cards(self, number_of_cards):
 
         if number_of_cards == 1:
 
-            return self.deck.get_one_card()
+            player.cards.append(self.deck.get_one_card())
 
         if number_of_cards > 1:
 
-            cards = []
+            for i in range(0,number_of_cards):
 
-            for i in range(0, number_of_cards):
-
-                cards.append(self.deck.get_one_card())
-
-            return cards
+                player.cards.append(self.deck.get_one_card())
 
     def get_cards(self):
 
@@ -118,3 +105,13 @@ class Dealer:
         else:
 
             print("\nThe dealer stays")
+
+
+class Player:
+
+    def __init__(self):
+
+        self.cards = []
+        self.money = 1000
+        self.round_bet = 0
+        self.is_splited = False
