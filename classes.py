@@ -68,14 +68,13 @@ class Dealer:
 
     def deal_cards(self, player, number_of_cards):
 
-
         if number_of_cards == 1:
 
             player.cards.append(self.deck.get_one_card())
 
         if number_of_cards > 1:
 
-            for i in range(0,number_of_cards):
+            for i in range(0, number_of_cards):
 
                 player.cards.append(self.deck.get_one_card())
 
@@ -106,6 +105,14 @@ class Dealer:
 
             print("\nThe dealer stays")
 
+    def pay_blackjack(self, player):
+
+        player.money += player.round_bet*2.5
+
+    def pay_win(self, player):
+
+        player.money += player.round_bet*2
+
 
 class Player:
 
@@ -115,3 +122,31 @@ class Player:
         self.money = 1000
         self.round_bet = 0
         self.is_splited = False
+
+    def bet(self, min_bet):
+
+        while True:
+
+            try:
+
+                bet = int(input("\nEnter your bet: "))
+
+                if bet > self.money:
+
+                    print("\nHey, you don't have enough money.")
+                    x = 1/0  # forcing an error
+
+                elif bet < min_bet:
+
+                    print("\nHey, your bet is lesser than the minimal.")
+                    x = 1/0
+
+            except:
+
+                continue
+
+            else:
+
+                self.round_bet = bet
+                self.money -= self.round_bet
+                break
