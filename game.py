@@ -6,10 +6,11 @@ from classes import *
 
 dealer = Dealer()
 player = Player()
+min_bet = 300
 
 # 2 The  player bets and the dealer deals two cards for the player and for himself
 
-player.bet()
+player.bet(min_bet)
 dealer.deal_cards(player, 2)
 dealer.get_cards()
 
@@ -19,4 +20,4 @@ dealer.get_cards()
 # 6 Dealer reveals his card
 # 7 The dealer stays or hit
 # 8 Check the winner
-# 9 The player chooses to repeat or not
+# 9 The player chooses to repeat or not  

@@ -7,6 +7,17 @@ ranks = ("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
          "Eight", "Nine", "Ten", "Jack", "Queen", "King")
 
 
+def sum_cards(cards):
+
+    my_sum = 0
+
+    for card in cards:
+
+        my_sum += card.value
+
+    return my_sum
+
+
 class Card:
 
     def __init__(self, rank, suit):
@@ -92,13 +103,13 @@ class Dealer:
         self.cards[0].face_up = True
         print(f"\nDealer cards: {self.cards}\n")
 
-        while self.sum_cards() <= 17:
+        while sum_cards(self.cards) <= 17:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
             print(f"\nDealer's cards: {self.cards}")
 
-            if self.sum_cards() > 21:
+            if sum_cards(self.cards) > 21:
 
                 print("\nThe dealer busted!!!")
                 break
@@ -107,7 +118,7 @@ class Dealer:
 
             print("\nThe dealer stays")
 
-    def pay_blackjack(self, player):
+    def check_blackjack(self, player):
 
         player.money += player.round_bet*2.5
 
