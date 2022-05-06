@@ -120,9 +120,15 @@ class Dealer:
 
     def check_blackjack(self, player):
 
-        player.money += player.round_bet*2.5
+        if sum_cards(player.cards) == 21:
 
-    def pay_win(self, player):
+            print("\nWinner winner chicken dinner!!!!")
+
+            player.money += player.round_bet*2.5
+
+            print(f"\nPlayer money: {player.money}")
+
+    def check_win(self, player):
 
         player.money += player.round_bet*2
 
