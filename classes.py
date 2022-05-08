@@ -28,7 +28,7 @@ def repeat(player, dealer):
 
             ask = int(input("Your choice: "))
 
-            if not(ask in [1,2]):
+            if not(ask in [1, 2]):
 
                 print("Hey, enter a valid choice!")
 
@@ -55,10 +55,11 @@ def has_busted(player_or_dealer):
     if sum_cards(player_or_dealer.cards) > 21:
 
         return True
-    
+
     else:
 
         return False
+
 
 class Card:
 
@@ -180,18 +181,17 @@ class Dealer:
             player.money += player.round_bet*2
             print(f"Player money: {player.money}")
 
-
         elif sum_cards(player.cards) < sum_cards(self.cards):
 
             print("\nThe player lost the game!!!")
             print(f"Player money: {player.money}")
-
 
         elif sum_cards(player.cards) == sum_cards(self.cards):
 
             print("\nPush!!!")
             player.money += player.round_bet
             print(f"Player money: {player.money}")
+
 
 class Player:
 
@@ -305,7 +305,8 @@ class Player:
                             if move == 2:
 
                                 print("\nthe player stays.")
-                                print(f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
+                                print(
+                                    f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
                                 break
 
                     break
@@ -322,7 +323,8 @@ class Player:
                     self.money -= self.round_bet
                     self.round_bet = self.round_bet*2
                     dealer.deal_cards(self, 1)
-                    print(f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
+                    print(
+                        f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
 
                     if sum_cards(self.cards) > 21:
 

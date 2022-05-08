@@ -10,7 +10,7 @@ min_bet = 300
 
 
 while player.has_money(min_bet):
-    
+
     # 2 The  player bets and the dealer deals two cards for the player and for himself
 
     player.bet(min_bet)
@@ -52,13 +52,11 @@ while player.has_money(min_bet):
 
             break
 
-
-
     # 7 Check the winner
 
     dealer.check_win(player)
 
-    # 8 The player chooses to repeat or not 
+    # 8 The player chooses to repeat or not
 
     if repeat(player, dealer):
 
@@ -68,4 +66,4 @@ while player.has_money(min_bet):
 
         break
 
-print("\nBye-bye!!!")gi
+print("\nBye-bye!!!")
