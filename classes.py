@@ -48,7 +48,6 @@ def repeat(player, dealer):
             elif ask == 2:
 
                 return False
-
 class Card:
 
     def __init__(self, rank, suit):
@@ -322,3 +321,14 @@ class Player:
                 elif move == 4:
 
                     pass
+
+    def has_money(self, min_bet):
+
+        if self.money >= min_bet:
+
+            return True
+
+        else:
+
+            print("\nYou don't have money")
+            return False
