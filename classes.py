@@ -18,6 +18,37 @@ def sum_cards(cards):
     return my_sum
 
 
+def repeat(player, dealer):
+
+    while True:
+
+        try:
+
+            print("\nDo you want to play again?\1 - Yes\n2 - No")
+
+            ask = int(input("Your choice: "))
+
+            if not(ask in [1,2]):
+
+                print("Hey, enter a valid choice!")
+
+        except:
+
+            continue
+
+        else:
+
+            if ask == 1:
+
+                player.cards = []
+                dealer.cards = []
+                dealer.deck = Deck()
+                return True
+
+            elif ask == 2:
+
+                return False
+
 class Card:
 
     def __init__(self, rank, suit):
@@ -89,7 +120,7 @@ class Dealer:
 
                 player.cards.append(self.deck.get_one_card())
 
-        print(f"\nPlayer cards: {player.cards}")
+        print(f"\nPlayer cards: {player.cards} ({sum_cards(player.cards)})")
 
     def get_cards(self):
 
@@ -107,7 +138,7 @@ class Dealer:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
-            print(f"\nDealer's cards: {self.cards}")
+            print(f"\nDealer's cards: {self.cards} ({sum_cards(self.cards)})")
 
             if sum_cards(self.cards) > 21:
 
@@ -130,8 +161,26 @@ class Dealer:
 
     def check_win(self, player):
 
-        player.money += player.round_bet*2
+        # checking when the player did not split hands
 
+        if sum_cards(player.cards) > sum_cards(self.cards):
+
+            print("\nPlayer wins!!!")
+            player.money += player.round_bet*2
+            print(f"Player money: {player.money}")
+
+
+        elif sum_cards(player.cards) < sum_cards(self.cards):
+
+            print("\nThe player lost the game!!!")
+            print(f"Player money: {player.money}")
+
+
+        elif sum_cards(player.cards) == sum_cards(self.cards):
+
+            print("\nPush!!!")
+            player.money += player.round_bet
+            print(f"Player money: {player.money}")
 
 class Player:
 
@@ -170,21 +219,20 @@ class Player:
                 self.money -= self.round_bet
                 break
 
-    
-    def player(self, dealer: Dealer):
+    def play(self, dealer: Dealer):
 
         while True:
 
             try:
 
-                print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4-Split")
+                print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4 - Split")
 
                 move = int(input("\nYour move: "))
 
-                if not(move in [1,2,3,4]):
+                if not(move in [1, 2, 3, 4]):
 
                     print("\nHey, choose a valid move.")
-                    x = 1/0 #forcing an error
+                    x = 1/0  # forcing an error
 
                 elif move == 3 and self.bet > self.money:
 
@@ -199,23 +247,28 @@ class Player:
             except:
 
                 continue
-                
+
             else:
 
                 if move == 1:
 
                     dealer.deal_cards(self, 1)
-                    print(f"\nPlayer cards: {self.cards}")
+
+                    if sum_cards(self.cards) > 21:
+
+                        print("\nThe player busted!!!")
+                        print(f"\nPlayer money: {self.money}")
+                        break
 
                     while True:
 
-                        print("1 - Hit\n2 - Stay")
+                        print("\n1 - Hit\n2 - Stay")
 
                         try:
 
                             move = int(input("\nYour move: "))
 
-                            if not(move in [1,2]):
+                            if not(move in [1, 2]):
 
                                 print("\nHey, enter a valid move.")
                                 x = 1/0
@@ -229,14 +282,22 @@ class Player:
                             if move == 1:
 
                                 dealer.deal_cards(self, 1)
-                                print(f"\nPlayer cards: {self.cards}")
+
+                                if sum_cards(self.cards) > 21:
+
+                                    print("\nThe player busted!!!")
+                                    print(f"Player money: {self.money}")
+                                    break
+
                                 continue
-                            
+
                             if move == 2:
 
                                 print("\nthe player stays.")
-                                print(f"\nPlayer cards: {self.cards}")
+                                print(f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
                                 break
+
+                    break
 
                 elif move == 2:
 
@@ -245,15 +306,17 @@ class Player:
 
                 elif move == 3:
 
-                    print(f"\nThe player doubles-down.\nPlayer money: {self.money}")
+                    print(
+                        f"\nThe player doubles-down.\nPlayer money: {self.money}")
                     self.money -= self.round_bet
                     self.round_bet = self.round_bet*2
                     dealer.deal_cards(self, 1)
-                    print(f"\nPlayer cards: {self.cards}")
+                    print(f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
 
                     if sum_cards(self.cards) > 21:
 
                         print("\nThe player busted!!!")
+                        print(f"\nPlayer money: {self.money}")
                         break
 
                 elif move == 4:
