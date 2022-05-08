@@ -48,6 +48,18 @@ def repeat(player, dealer):
             elif ask == 2:
 
                 return False
+
+
+def has_busted(player_or_dealer):
+
+    if sum_cards(player_or_dealer.cards) > 21:
+
+        return True
+    
+    else:
+
+        return False
+
 class Card:
 
     def __init__(self, rank, suit):
