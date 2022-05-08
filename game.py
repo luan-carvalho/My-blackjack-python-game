@@ -8,34 +8,64 @@ dealer = Dealer()
 player = Player()
 min_bet = 300
 
-# 2 The  player bets and the dealer deals two cards for the player and for himself
 
-player.bet(min_bet)
-dealer.deal_cards(player, 2)
-dealer.get_cards()
+while player.has_money(min_bet):
+    
+    # 2 The  player bets and the dealer deals two cards for the player and for himself
 
-# 3 Check if the player has a blackjack hand (if yes, the game ends and the player wins 3:2)
+    player.bet(min_bet)
+    dealer.deal_cards(player, 2)
+    dealer.get_cards()
 
-dealer.check_blackjack(player)
+    # 3 Check if the player has a blackjack hand (if yes, the game ends and the player wins 3:2)
 
-# 4 The player chooses his move(hit, stay, double-down or split)
+    dealer.check_blackjack(player)
 
-player.play(dealer)
+    # 4 The player chooses his move(hit, stay, double-down or split)
 
-# 5 Dealer reveals his card
+    player.play(dealer)
 
-dealer.reveal_card()
+    if has_busted(player):
 
-# 7 Check the winner
+        if repeat(player, dealer):
 
-dealer.check_win(player)
+            continue
 
-# 8 The player chooses to repeat or not 
+        else:
 
-# if repeat(player, dealer):
+            break
 
-#     continue
+    # 5 Dealer reveals his card
 
-# else:
+    dealer.reveal_card()
 
-#     break
+    if has_busted(dealer):
+
+        player.money += player.round_bet*2
+        print(f"\nPlayer money: {player.money}")
+
+        if repeat(player, dealer):
+
+            continue
+
+        else:
+
+            break
+
+
+
+    # 7 Check the winner
+
+    dealer.check_win(player)
+
+    # 8 The player chooses to repeat or not 
+
+    if repeat(player, dealer):
+
+        continue
+
+    else:
+
+        break
+
+print("\nBye-bye!!!")gi
