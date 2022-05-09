@@ -24,7 +24,7 @@ def repeat(player, dealer):
 
         try:
 
-            print("\nDo you want to play again?\1 - Yes\n2 - No")
+            print("\nDo you want to play again?\n1 - Yes\n2 - No")
 
             ask = int(input("Your choice: "))
 
@@ -139,7 +139,7 @@ class Dealer:
         self.cards.append(self.deck.get_one_card())
         self.cards[0].face_up = False
         self.cards.append(self.deck.get_one_card())
-        print(f"\nDealer's cards: {self.cards}")
+        print(f"\nDealer cards: {self.cards}")
 
     def reveal_card(self):
 
@@ -150,7 +150,7 @@ class Dealer:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
-            print(f"\nDealer's cards: {self.cards} ({sum_cards(self.cards)})")
+            print(f"\nDealer cards: {self.cards} ({sum_cards(self.cards)})")
 
             if sum_cards(self.cards) > 21:
 
