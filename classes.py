@@ -171,6 +171,12 @@ class Dealer:
 
             print(f"\nPlayer money: {player.money}")
 
+            return True
+
+        else:
+
+            return False
+
     def check_win(self, player):
 
         # checking when the player did not split hands
