@@ -119,6 +119,7 @@ class Dealer:
 
         self.deck = Deck()
         self.cards = []
+        self.hand_total = 0
 
     def deal_cards(self, player, number_of_cards):
 
@@ -206,7 +207,7 @@ class Player:
         self.cards = []
         self.money = 1000
         self.round_bet = 0
-        self.is_splited = False
+        self.hand_total = 0
 
     def bet(self, min_bet):
 
