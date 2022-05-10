@@ -144,22 +144,22 @@ class Dealer:
         self.cards.append(self.deck.get_one_card())
         self.cards[0].face_up = False
         self.cards.append(self.deck.get_one_card())
-        self.total += sum_cards(self.cards)
+        self.total += sum([card.value for card in self.cards])
         print(f"\nDealer cards: {self.cards}")
 
     def reveal_card(self):
 
-        self.cards[0].face_up = True
+        self.cards[0].face_up = Truegi
         print(f"\nDealer cards: {self.cards}")
 
-        while sum_cards(self.cards) <= 17:
+        while self.total <= 16:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
             self.total += self.cards[-1].value
-            print(f"\nDealer cards: {self.cards} ({sum_cards(self.cards)})")
+            print(f"\nDealer cards: {self.cards} ({self.total})")
 
-            if sum_cards(self.cards) > 21:
+            if self.total > 21:
 
                 print("\nThe dealer busted!!!")
                 break
@@ -170,7 +170,7 @@ class Dealer:
 
     def check_blackjack(self, player):
 
-        if sum_cards(player.cards) == 21:
+        if self.total == 21:
 
             print("\nWinner winner chicken dinner!!!!")
 
@@ -188,18 +188,18 @@ class Dealer:
 
         # checking when the player did not split hands
 
-        if sum_cards(player.cards) > sum_cards(self.cards):
+        if player.total > self.total:
 
             print("\nPlayer wins!!!")
             player.money += player.round_bet*2
             print(f"Player money: {player.money}")
 
-        elif sum_cards(player.cards) < sum_cards(self.cards):
+        elif player.total < self.total:
 
             print("\nThe player lost the game!!!")
             print(f"Player money: {player.money}")
 
-        elif sum_cards(player.cards) == sum_cards(self.cards):
+        elif player.total == self.total:
 
             print("\nPush!!!")
             player.money += player.round_bet
@@ -278,7 +278,7 @@ class Player:
 
                     dealer.deal_cards(self, 1)
 
-                    if sum_cards(self.cards) > 21:
+                    if self.total > 21:
 
                         print("\nThe player busted!!!")
                         print(f"\nPlayer money: {self.money}")
@@ -307,7 +307,7 @@ class Player:
 
                                 dealer.deal_cards(self, 1)
 
-                                if sum_cards(self.cards) > 21:
+                                if self.total > 21:
 
                                     print("\nThe player busted!!!")
                                     print(f"Player money: {self.money}")
@@ -339,7 +339,7 @@ class Player:
                     print(
                         f"\nPlayer cards: {self.cards} ({self.total})")
 
-                    if sum_cards(self.cards) > 21:
+                    if self.total > 21:
 
                         print("\nThe player busted!!!")
                         print(f"\nPlayer money: {self.money}")
