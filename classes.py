@@ -329,15 +329,3 @@ class Player:
                 elif move == 4:
 
                     break
-
-    def has_money(self, min_bet):
-
-        if self.money >= min_bet:
-
-            return True
-
-        else:
-
-            print(
-                f"\nYou don't have money for another hand.\nYour money: {self.money}\nMinimal bet: {min_bet}")
-            return False

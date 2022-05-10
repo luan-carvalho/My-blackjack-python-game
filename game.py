@@ -25,7 +25,7 @@ player = Player()
 min_bet = 300
 
 
-while player.has_money(min_bet):
+while player.money > min_bet:
 
     # 2 The  player bets and the dealer deals two cards for the player
 
@@ -130,5 +130,8 @@ while player.has_money(min_bet):
     else:
 
         break
+else:
 
+    print("Hey, you don't have money to stay in the game.")
+    
 print("\nBye-bye!!!")
