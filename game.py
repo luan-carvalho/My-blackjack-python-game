@@ -13,6 +13,7 @@ def screen_break():
 
 # 1 Create the dealer and the player
 
+
 screen_break()
 
 print("\nWelcome to the Monkey's cassino!! This is a Blackjack table. The minimal bet is $300.")
@@ -20,12 +21,13 @@ print("\nYou have $1000")
 
 dealer = Dealer()
 player = Player()
+
 min_bet = 300
 
 
 while player.has_money(min_bet):
 
-    # 2 The  player bets and the dealer deals two cards for the player and for himself
+    # 2 The  player bets and the dealer deals two cards for the player
 
     screen_break()
 
@@ -40,6 +42,8 @@ while player.has_money(min_bet):
     sleep(2)
 
     dealer.deal_cards(player, 2)
+
+    # 3 Check blackjack
 
     screen_break()
 
@@ -57,22 +61,26 @@ while player.has_money(min_bet):
 
             break
 
+    # 4 Dealer deals his cards
+
     print("\nDealing dealer's cards...")
 
     sleep(2)
 
     dealer.get_cards()
 
-    # 4 The player chooses his move(hit, stay, double-down or split)
+    # 5 The player chooses his move(hit, stay, double-down or split)
 
     screen_break()
+
+    print("\nYour action!!!")
 
     sleep(2)
 
     player.play(dealer)
 
     if player.total > 21:
-        
+
         if repeat(player, dealer):
 
             continue
@@ -81,8 +89,7 @@ while player.has_money(min_bet):
 
             break
 
-    
-    # 5 Dealer reveals his card
+    # 6 Dealer reveals his card
 
     screen_break()
 

@@ -6,6 +6,7 @@ suits = ("Cups", "Spades", "Diamonds", "Hearts")
 ranks = ("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
          "Eight", "Nine", "Ten", "Jack", "Queen", "King")
 
+
 def repeat(player, dealer):
 
     while True:
@@ -38,6 +39,8 @@ def repeat(player, dealer):
             elif ask == 2:
 
                 return False
+
+
 class Card:
 
     def __init__(self, rank, suit):
@@ -96,7 +99,7 @@ class Dealer:
 
         self.deck = Deck()
         self.cards = []
-        self.total = 0 # Attribute to track the hand total value
+        self.total = 0  # Attribute to track the hand total value
 
     def deal_cards(self, player, number_of_cards):
 
@@ -190,7 +193,7 @@ class Player:
         self.cards = []
         self.money = 1000
         self.round_bet = 0
-        self.total = 0 # Attribute to track the hand total value
+        self.total = 0  # Attribute to track the hand total value
 
     def bet(self, min_bet):
 
@@ -218,7 +221,8 @@ class Player:
 
                 self.round_bet = bet
                 self.money -= self.round_bet
-                print(f"\nYour money: {self.money}\nYour round bet: {self.round_bet}")
+                print(
+                    f"\nYour money: {self.money}\nYour round bet: {self.round_bet}")
                 break
 
     def play(self, dealer: Dealer):
@@ -236,7 +240,7 @@ class Player:
                     print("\nHey, choose a valid move.")
                     x = 1/0  # forcing an error
 
-                elif move == 3 and self.bet > self.money:
+                elif move == 3 and self.round_bet > self.money:
 
                     print("\nHey, you don't have money for a double-down.")
                     x = 1/0
@@ -248,7 +252,7 @@ class Player:
 
             except:
 
-                print("\nmacaco")
+                continue
 
             else:
 
@@ -309,14 +313,11 @@ class Player:
 
                 elif move == 3:
 
-                    print(
-                        f"\nDouble-down!! .\nYour money: {self.money}")
                     self.money -= self.round_bet
                     self.round_bet = self.round_bet*2
-                    dealer.deal_cards(self, 1)
                     print(
-                        f"\nYour cards: {self.cards} ({self.total})")
-                
+                        f"\nDouble-down!!\n\nYour money: {self.money}\nYour round bet: {self.round_bet}")
+                    dealer.deal_cards(self, 1)
 
                     if self.total > 21:
 
@@ -338,5 +339,6 @@ class Player:
 
         else:
 
-            print(f"\nYou don't have money for another hand.\nYour money: {self.money}\nMinimal bet: {min_bet}")
+            print(
+                f"\nYou don't have money for another hand.\nYour money: {self.money}\nMinimal bet: {min_bet}")
             return False
