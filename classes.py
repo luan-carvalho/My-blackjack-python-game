@@ -112,7 +112,7 @@ class Dealer:
                 player.cards.append(self.deck.get_one_card())
                 player.total += player.cards[-1].value
 
-        print(f"\nPlayer cards: {player.cards} ({player.total})")
+        print(f"\nYour cards: {player.cards} ({player.total})")
 
     def get_cards(self):
 
@@ -138,7 +138,7 @@ class Dealer:
 
                 print("\nThe dealer busted!!!")
                 player.money += player.round_bet*2
-                print(f"\nPlayer money: {player.money}")
+                print(f"\nYour money: {player.money}")
                 break
 
         else:
@@ -147,13 +147,13 @@ class Dealer:
 
     def check_blackjack(self, player):
 
-        if self.total == 21:
+        if player.total == 21:
 
             print("\nWinner winner chicken dinner!!!!")
 
             player.money += player.round_bet*2.5
 
-            print(f"\nPlayer money: {player.money}")
+            print(f"\nYour money: {player.money}")
 
             return True
 
@@ -167,14 +167,14 @@ class Dealer:
 
         if player.total > self.total:
 
-            print("\nPlayer wins!!!")
+            print("\nYou win!!!")
             player.money += player.round_bet*2
-            print(f"Player money: {player.money}")
+            print(f"Your money: {player.money}")
 
         elif player.total < self.total:
 
-            print("\nThe player lost the game!!!")
-            print(f"Player money: {player.money}")
+            print("\nYou lose!!!")
+            print(f"Your money: {player.money}")
 
         elif player.total == self.total:
 
@@ -257,8 +257,8 @@ class Player:
 
                     if self.total > 21:
 
-                        print("\nThe player busted!!!")
-                        print(f"\nPlayer money: {self.money}")
+                        print("\nYou busted!!!")
+                        print(f"\nYour money: {self.money}")
                         break
 
                     while True:
@@ -286,40 +286,40 @@ class Player:
 
                                 if self.total > 21:
 
-                                    print("\nThe player busted!!!")
-                                    print(f"Player money: {self.money}")
+                                    print("\nYou busted!!!")
+                                    print(f"Your money: {self.money}")
                                     break
 
                                 continue
 
                             if move == 2:
 
-                                print("\nthe player stays.")
+                                print("\nYou stay.")
                                 print(
-                                    f"\nPlayer cards: {self.cards} ({self.total})")
+                                    f"\nYour cards: {self.cards} ({self.total})")
                                 break
 
                     break
 
                 elif move == 2:
 
-                    print("\nThe player stays.")
+                    print("\nYou stay.")
                     break
 
                 elif move == 3:
 
                     print(
-                        f"\nThe player doubles-down.\nPlayer money: {self.money}")
+                        f"\nDouble-down!! .\nYour money: {self.money}")
                     self.money -= self.round_bet
                     self.round_bet = self.round_bet*2
                     dealer.deal_cards(self, 1)
                     print(
-                        f"\nPlayer cards: {self.cards} ({self.total})")
+                        f"\nYour cards: {self.cards} ({self.total})")
 
                     if self.total > 21:
 
-                        print("\nThe player busted!!!")
-                        print(f"\nPlayer money: {self.money}")
+                        print("\nYou busted!!!")
+                        print(f"\nYour money: {self.money}")
                         break
 
                 elif move == 4:

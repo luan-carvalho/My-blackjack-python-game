@@ -42,20 +42,12 @@ while player.has_money(min_bet):
     dealer.deal_cards(player, 2)
 
     screen_break()
-    
-    sleep(2)
-
-    print("\nDealing dealer's cards...")
 
     sleep(2)
-
-    dealer.get_cards()
-
-    # 3 Check if the player has a blackjack hand (if yes, the game ends and the player wins 3:2)
 
     if dealer.check_blackjack(player):
 
-        sleep(2)
+        screen_break()
 
         if repeat(player, dealer):
 
@@ -64,6 +56,12 @@ while player.has_money(min_bet):
         else:
 
             break
+
+    print("\nDealing dealer's cards...")
+
+    sleep(2)
+
+    dealer.get_cards()
 
     # 4 The player chooses his move(hit, stay, double-down or split)
 
