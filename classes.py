@@ -149,7 +149,7 @@ class Dealer:
 
     def reveal_card(self):
 
-        self.cards[0].face_up = Truegi
+        self.cards[0].face_up = True
         print(f"\nDealer cards: {self.cards}")
 
         while self.total <= 16:
