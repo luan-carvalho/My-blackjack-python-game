@@ -41,7 +41,9 @@ def repeat(player, dealer):
             if ask == 1:
 
                 player.cards = []
+                player.total = 0
                 dealer.cards = []
+                dealer.total = 0
                 dealer.deck = Deck()
                 return True
 
@@ -135,7 +137,7 @@ class Dealer:
                 player.cards.append(self.deck.get_one_card())
                 player.total += player.cards[-1].value
 
-        print(f"\nPlayer cards: {player.cards} ({sum_cards(player.cards)})")
+        print(f"\nPlayer cards: {player.cards} ({player.total})")
 
     def get_cards(self):
 
