@@ -73,7 +73,9 @@ while player.has_money(min_bet):
 
     player.play(dealer)
 
-    if has_busted(player):
+    if player.total > 21:
+
+        print("You busted!!!")
 
         sleep(1)
 
@@ -90,18 +92,20 @@ while player.has_money(min_bet):
 
     screen_break()
 
+    print("\nRevealing dealer's card")
+
     sleep(2)
 
     dealer.reveal_card()
 
-    if has_busted(dealer):
+    if dealer.total > 21:
 
-        sleep(2)
-
+        print("\nThe dealer busted!!!")
+        sleep(1)
         player.money += player.round_bet*2
         print(f"\nPlayer money: {player.money}")
 
-        sleep(2)
+        sleep(1)
 
         if repeat(player, dealer):
 
