@@ -115,7 +115,7 @@ class Dealer:
                 player.cards.append(self.deck.get_one_card())
                 player.total += player.cards[-1].value
 
-        print(f"\nYour cards: {player.cards} ({player.total})")
+        print(f"\nYour cards: {player.cards}")
 
     def get_cards(self):
 
@@ -128,14 +128,14 @@ class Dealer:
     def reveal_card(self, player):
 
         self.cards[0].face_up = True
-        print(f"\nDealer cards: {self.cards} ({self.total})")
+        print(f"\nDealer cards: {self.cards}")
 
         while self.total <= 16:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
             self.total += self.cards[-1].value
-            print(f"\nDealer cards: {self.cards} ({self.total})")
+            print(f"\nDealer cards: {self.cards}")
 
             if self.total > 21:
 
@@ -300,8 +300,6 @@ class Player:
                             if move == 2:
 
                                 print("\nYou stay.")
-                                print(
-                                    f"\nYour cards: {self.cards} ({self.total})")
                                 break
 
                     break
