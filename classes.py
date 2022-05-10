@@ -122,7 +122,7 @@ class Dealer:
         self.total += sum([card.value for card in self.cards])
         print(f"\nDealer cards: {self.cards}")
 
-    def reveal_card(self):
+    def reveal_card(self, player):
 
         self.cards[0].face_up = True
         print(f"\nDealer cards: {self.cards}")
@@ -137,6 +137,8 @@ class Dealer:
             if self.total > 21:
 
                 print("\nThe dealer busted!!!")
+                player.money += player.round_bet*2
+                print(f"\nPlayer money: {player.money}")
                 break
 
         else:
