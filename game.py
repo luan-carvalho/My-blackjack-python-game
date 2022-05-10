@@ -108,7 +108,7 @@ while player.has_money(min_bet):
 
     sleep(2)
 
-    dealer.check_win(player)
+    dealer.check_winner(player)
 
     # 8 The player chooses to repeat or not
 

@@ -14,11 +14,11 @@ def repeat(player, dealer):
 
             print("\nDo you want to play again?\n1 - Yes\n2 - No")
 
-            ask = int(input("Your choice: "))
+            ask = int(input("\nYour choice: "))
 
             if not(ask in [1, 2]):
 
-                print("Hey, enter a valid choice!")
+                print("\nHey, enter a valid choice!")
 
         except:
 
@@ -125,7 +125,7 @@ class Dealer:
     def reveal_card(self, player):
 
         self.cards[0].face_up = True
-        print(f"\nDealer cards: {self.cards}")
+        print(f"\nDealer cards: {self.cards} ({self.total})")
 
         while self.total <= 16:
 
@@ -161,7 +161,7 @@ class Dealer:
 
             return False
 
-    def check_win(self, player):
+    def check_winner(self, player):
 
         # checking when the player did not split hands
 
@@ -218,6 +218,7 @@ class Player:
 
                 self.round_bet = bet
                 self.money -= self.round_bet
+                print(f"\nYour money: {self.money}\nYour round bet: {self.round_bet}")
                 break
 
     def play(self, dealer: Dealer):
@@ -247,7 +248,7 @@ class Player:
 
             except:
 
-                continue
+                print("\nmacaco")
 
             else:
 
@@ -315,6 +316,7 @@ class Player:
                     dealer.deal_cards(self, 1)
                     print(
                         f"\nYour cards: {self.cards} ({self.total})")
+                
 
                     if self.total > 21:
 
@@ -322,9 +324,11 @@ class Player:
                         print(f"\nYour money: {self.money}")
                         break
 
+                    break
+
                 elif move == 4:
 
-                    pass
+                    break
 
     def has_money(self, min_bet):
 
