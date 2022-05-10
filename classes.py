@@ -322,7 +322,6 @@ class Player:
                     if self.total > 21:
 
                         print("\nYou busted!!!")
-                        print(f"\nYour money: {self.money}")
                         break
 
                     break
