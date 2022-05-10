@@ -119,19 +119,21 @@ class Dealer:
 
         self.deck = Deck()
         self.cards = []
-        self.hand_total = 0
+        self.total = 0 # Attribute to track the hand total value
 
     def deal_cards(self, player, number_of_cards):
 
         if number_of_cards == 1:
 
             player.cards.append(self.deck.get_one_card())
+            player.total += player.cards[-1].value
 
         if number_of_cards > 1:
 
             for i in range(0, number_of_cards):
 
                 player.cards.append(self.deck.get_one_card())
+                player.total += player.cards[-1].value
 
         print(f"\nPlayer cards: {player.cards} ({sum_cards(player.cards)})")
 
@@ -140,17 +142,19 @@ class Dealer:
         self.cards.append(self.deck.get_one_card())
         self.cards[0].face_up = False
         self.cards.append(self.deck.get_one_card())
+        self.total += sum_cards(self.cards)
         print(f"\nDealer cards: {self.cards}")
 
     def reveal_card(self):
 
         self.cards[0].face_up = True
-        print(f"\nDealer cards: {self.cards}\n")
+        print(f"\nDealer cards: {self.cards}")
 
         while sum_cards(self.cards) <= 17:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
+            self.total += self.cards[-1].value
             print(f"\nDealer cards: {self.cards} ({sum_cards(self.cards)})")
 
             if sum_cards(self.cards) > 21:
@@ -207,7 +211,7 @@ class Player:
         self.cards = []
         self.money = 1000
         self.round_bet = 0
-        self.hand_total = 0
+        self.total = 0 # Attribute to track the hand total value
 
     def bet(self, min_bet):
 
@@ -257,7 +261,7 @@ class Player:
                     print("\nHey, you don't have money for a double-down.")
                     x = 1/0
 
-                elif move == 4 and (self.cards[0].rank == self.cards[1].rank or self.money < self.bet):
+                elif move == 4 and (self.cards[0].rank != self.cards[1].rank or self.money < self.bet):
 
                     print("\nHey, you can't split. Check your hand or your money.")
                     x = 1/0
@@ -313,7 +317,7 @@ class Player:
 
                                 print("\nthe player stays.")
                                 print(
-                                    f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
+                                    f"\nPlayer cards: {self.cards} ({self.total})")
                                 break
 
                     break
@@ -331,7 +335,7 @@ class Player:
                     self.round_bet = self.round_bet*2
                     dealer.deal_cards(self, 1)
                     print(
-                        f"\nPlayer cards: {self.cards} ({sum_cards(self.cards)})")
+                        f"\nPlayer cards: {self.cards} ({self.total})")
 
                     if sum_cards(self.cards) > 21:
 
@@ -351,5 +355,5 @@ class Player:
 
         else:
 
-            print("\nYou don't have money")
+            print(f"\nYou don't have money for another hand.\nYour money: {self.money}\nMinimal bet: {min_bet}")
             return False
