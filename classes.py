@@ -49,7 +49,7 @@ class Card:
         self.suit = suit
         self.value = values[rank]
         self.face_up = True
-        self.ace_changed = False # Attribute to check if an ace has been changed to 1
+        self.ace_changed = False  # Attribute to check if an ace has been changed to 1
 
     def __str__(self):
 
@@ -109,7 +109,9 @@ class Dealer:
             player.cards.append(self.deck.get_one_card())
             player.total += player.cards[-1].value
 
-            aces = [card for card in player.cards if card.rank == "Ace" and card.ace_changed == False] # list with all aces that are not 1 yet
+            # list with all aces that are not 1 yet
+            aces = [card for card in player.cards if card.rank ==
+                    "Ace" and card.ace_changed == False]
 
             while player.total > 21 and len(aces) != 0 and aces[-1].ace_changed == False:
 
@@ -117,7 +119,7 @@ class Dealer:
                 aces[-1].ace_changed = True
                 aces.pop(-1)
 
-                print(f"\nYour cards: {player.cards}")
+                print(f"\nYour cards: {player.cards} ({player.total})")
                 print(f"\n## Ace value changed to 1 ##")
 
             else:
@@ -139,19 +141,19 @@ class Dealer:
         self.cards[0].face_up = False
         self.cards.append(self.deck.get_one_card())
         self.total += sum([card.value for card in self.cards])
-        print(f"\nDealer cards: {self.cards}")
+        print(f"\nDealer cards: {self.cards} ({self.total})")
 
     def reveal_card(self, player):
 
         self.cards[0].face_up = True
-        print(f"\nDealer cards: {self.cards}")
+        print(f"\nDealer cards: {self.cards} ({self.total})")
 
         while self.total <= 16:
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
             self.total += self.cards[-1].value
-            print(f"\nDealer cards: {self.cards}")
+            print(f"\nDealer cards: {self.cards} ({self.total})")
 
             if self.total > 21:
 
@@ -361,4 +363,38 @@ class Player:
 
                 elif move == 4:
 
-                    break
+                    self.total = [self.total]
+
+                    index = 1
+
+                    hand1 = self.cards
+                    hand2 = [self.cards[-1]]
+
+                    print(f"\nHand1: {hand1} {sum([card.value for card in hand1])}")
+                    print(f"\nHand1: {hand1} {sum([card.value for card in hand2])}")
+                    
+                    while True:
+
+                        print(f"\n1 - Hit\n2 - Stay")
+
+                        try:
+
+                            ask = int(input(f"Your move for hand {index+1}: "))
+
+                            if not(ask in [1,2]):
+
+                                print("\nHey, enter a valid choice")
+                                x = 1/0
+
+                        except:
+
+                            continue
+
+                        else:
+
+                            pass
+
+
+
+
+                    
