@@ -230,26 +230,44 @@ class Player:
         while True:
 
             try:
+                
+                if self.cards[0].rank == self.cards[1].rank:
 
-                print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4 - Split")
+                    print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4 - Split")
 
-                move = int(input("\nYour move: "))
+                    move = int(input("\nYour move: "))
 
-                if not(move in [1, 2, 3, 4]):
+                    if not(move in [1, 2, 3, 4]):
 
-                    print("\nHey, choose a valid move.")
-                    x = 1/0  # forcing an error
+                        print("\nHey, choose a valid move.")
+                        x = 1/0  # forcing an error
 
-                elif move == 3 and self.round_bet > self.money:
+                    elif move == 3 and self.round_bet > self.money:
 
-                    print("\nHey, you don't have money for a double-down.")
-                    x = 1/0
+                        print("\nHey, you don't have money for a double-down.")
+                        x = 1/0
 
-                elif move == 4 and (self.cards[0].rank != self.cards[1].rank or self.money < self.bet):
+                    elif move == 4 and (self.cards[0].rank != self.cards[1].rank or self.money < self.bet):
 
-                    print("\nHey, you can't split. Check your hand or your money.")
-                    x = 1/0
+                        print("\nHey, you can't split. Check your hand or your money.")
+                        x = 1/0
 
+                else:
+
+                    print("\n1 - Hit\n2 - Stay\n3 - Double-down")
+
+                    move = int(input("\nYour move: "))
+
+                    if not(move in [1, 2, 3]):
+
+                        print("\nHey, choose a valid move.")
+                        x = 1/0  # forcing an error
+
+                    elif move == 3 and self.round_bet > self.money:
+
+                        print("\nHey, you don't have money for a double-down.")
+                        x = 1/0
+                        
             except:
 
                 continue
