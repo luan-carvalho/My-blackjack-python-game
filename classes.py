@@ -109,20 +109,20 @@ class Dealer:
             player.cards.append(self.deck.get_one_card())
             player.total += player.cards[-1].value
 
-            aces = [card for card in player.cards if card.rank == "Ace"]
+            aces = [card for card in player.cards if card.rank == "Ace" and card.ace_changed == False] # list with all aces that are not 1 yet
 
-            if player.total > 21 and len(aces) != 0 and aces[-1].ace_changed == False:
+            while player.total > 21 and len(aces) != 0 and aces[-1].ace_changed == False:
 
                 player.total -= 10
                 aces[-1].ace_changed = True
                 aces.pop(-1)
 
                 print(f"\nYour cards: {player.cards}")
-                print(f"\nAce value changed to 1")
+                print(f"\n## Ace value changed to 1 ##")
 
             else:
 
-                print(f"\nYour cards: {player.cards}")
+                print(f"\nYour cards: {player.cards} ({player.total})")
 
         if number_of_cards > 1:
 
