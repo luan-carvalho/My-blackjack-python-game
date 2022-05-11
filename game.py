@@ -2,19 +2,9 @@
 from classes import *
 from time import sleep
 
-
-def screen_break():
-
-    print("\n")
-    print("*"*100)
-    print("\n")
-
 # Game logic
 
 # 1 Create the dealer and the player
-
-
-screen_break()
 
 print("\nWelcome to the Monkey's cassino!! This is a Blackjack table. The minimal bet is $300.")
 print("\nYou have $1000")
@@ -29,11 +19,7 @@ while player.money > min_bet:
 
     # 2 The  player bets and the dealer deals two cards for the player
 
-    screen_break()
-
     player.bet(min_bet)
-
-    screen_break()
 
     sleep(2)
 
@@ -45,13 +31,9 @@ while player.money > min_bet:
 
     # 3 Check blackjack
 
-    screen_break()
-
     sleep(2)
 
     if dealer.check_blackjack(player):
-
-        screen_break()
 
         if repeat(player, dealer):
 
@@ -71,8 +53,6 @@ while player.money > min_bet:
 
     # 5 The player chooses his move(hit, stay, double-down or split)
 
-    screen_break()
-
     print("\nYour action!!!")
 
     sleep(2)
@@ -90,8 +70,6 @@ while player.money > min_bet:
             break
 
     # 6 Dealer reveals his card
-
-    screen_break()
 
     print("\nRevealing dealer's card")
 
@@ -111,15 +89,11 @@ while player.money > min_bet:
 
     # 7 Check the winner
 
-    screen_break()
-
     sleep(2)
 
     dealer.check_winner(player)
 
     # 8 The player chooses to repeat or not
-
-    screen_break()
 
     sleep(2)
 
@@ -133,5 +107,5 @@ while player.money > min_bet:
 else:
 
     print("Hey, you don't have money to stay in the game.")
-    
+
 print("\nBye-bye!!!")
