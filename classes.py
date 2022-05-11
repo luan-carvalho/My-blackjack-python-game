@@ -49,6 +49,7 @@ class Card:
         self.suit = suit
         self.value = values[rank]
         self.face_up = True
+        self.ace_changed = False # Attribute to check if an ace has been changed to 1
 
     def __str__(self):
 
@@ -108,6 +109,21 @@ class Dealer:
             player.cards.append(self.deck.get_one_card())
             player.total += player.cards[-1].value
 
+            aces = [card for card in player.cards if card.rank == "Ace"]
+
+            if player.total > 21 and len(aces) != 0 and aces[-1].ace_changed == False:
+
+                player.total -= 10
+                aces[-1].ace_changed = True
+                aces.pop(-1)
+
+                print(f"\nYour cards: {player.cards}")
+                print(f"\nAce value changed to 1")
+
+            else:
+
+                print(f"\nYour cards: {player.cards}")
+
         if number_of_cards > 1:
 
             for i in range(0, number_of_cards):
@@ -115,7 +131,7 @@ class Dealer:
                 player.cards.append(self.deck.get_one_card())
                 player.total += player.cards[-1].value
 
-        print(f"\nYour cards: {player.cards}")
+            print(f"\nYour cards: {player.cards}")
 
     def get_cards(self):
 
@@ -230,7 +246,7 @@ class Player:
         while True:
 
             try:
-                
+
                 if self.cards[0].rank == self.cards[1].rank:
 
                     print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4 - Split")
@@ -249,7 +265,8 @@ class Player:
 
                     elif move == 4 and (self.cards[0].rank != self.cards[1].rank or self.money < self.bet):
 
-                        print("\nHey, you can't split. Check your hand or your money.")
+                        print(
+                            "\nHey, you can't split. Check your hand or your money.")
                         x = 1/0
 
                 else:
@@ -267,7 +284,7 @@ class Player:
 
                         print("\nHey, you don't have money for a double-down.")
                         x = 1/0
-                        
+
             except:
 
                 continue
