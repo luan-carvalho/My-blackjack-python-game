@@ -407,6 +407,7 @@ class Player:
 
                         try:
 
+
                             if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank:
 
                                 print("\n1 - Hit\n2 - Stay\n3 - Split")
@@ -431,8 +432,10 @@ class Player:
                                     x = 1/0
 
                         except:
+                            print("aaaaaaa")
 
-                            continue
+                            # continue
+                            break
 
                         else:
 
@@ -442,12 +445,15 @@ class Player:
 
                                 if self.total[hand-1] > 21:
 
-                                    print(f"Hand {hand} busted!!!")
+                                    print(f"\nHand {hand} busted!!!")
                                     self.total[hand-1] = 0
 
                                     if hand < len(self.cards):
 
                                         hand += 1
+                                        self.cards[hand-1].append(dealer.deck.get_one_card())
+                                        self.total[hand-1] += self.cards[hand-1][-1].value
+                                        print(f"\nHand {hand}: {self.cards[hand-1]}")
                                         continue
 
                                     else:
@@ -462,6 +468,10 @@ class Player:
                                     
                                     print(f"\nStay in hand {hand}")
                                     hand += 1
+                                    self.cards[hand-1].append(dealer.deck.get_one_card())
+                                    self.total[hand-1] += self.cards[hand-1][-1].value
+                                    print(f"\nHand {hand}: {self.cards[hand-1]}")
+
                                     continue
 
                                 else:
