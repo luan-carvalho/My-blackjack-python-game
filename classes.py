@@ -49,7 +49,7 @@ class Card:
         self.suit = suit
         self.value = values[rank]
         self.face_up = True
-        self.ace_changed = False # Attribute to check if an ace has been changed to 1
+        self.change_value = False # Attribute to check if an ace has been changed to 1
 
     def __str__(self):
 
@@ -109,15 +109,14 @@ class Dealer:
             player.cards.append(self.deck.get_one_card())
             player.total += player.cards[-1].value
 
-            aces = [card for card in player.cards if card.rank == "Ace" and card.ace_changed == False] # list with all aces that are not 1 yet
+            aces = [card for card in player.cards if card.rank == "Ace" and card.change_value == False] # list with all aces that are not 1 yet
 
             while player.total > 21 and len(aces) != 0:
 
                 print(f"\nYour cards: {player.cards}")
 
                 player.total -= 10
-                aces[-1].ace_changed = True
-                aces.pop(-1)
+                aces[-1].change_value = True
 
                 print(f"\n## Ace value changed to 1 ##")
 
@@ -132,8 +131,29 @@ class Dealer:
                 player.cards.append(self.deck.get_one_card())
                 player.total += player.cards[-1].value
 
-            print(f"\nYour cards: {player.cards}")
 
+            print(f"\nYour cards: {player.cards} ({player.total})")
+
+    def split_dealing(self, player, hand):
+
+        aces = [card for card in player.cards[hand-1] if card.rank == "Ace" and card.change_value ==  False]
+
+        player.cards[hand-1].append(self.deck.get_one_card())
+        player.splited_total[hand-1] = sum([card.value for card in player.cards[hand-1]])
+
+        while player.splited_total[hand-1] > 21 and len(aces) != 0:
+
+            print(f"\nHand {hand}: {player.cards[hand-1]} ({player.splited_total[hand-1]})")
+
+            player.splited_total[hand-1] -= 10
+            aces[-1].change_value = True
+
+            print("\n## Ace value changed to 1 ##")
+
+        else:
+
+            print(f"\nHand {hand}: {player.cards[hand-1]} ({player.splited_total[hand-1]})")
+    
     def get_cards(self):
 
         self.cards.append(self.deck.get_one_card())
@@ -363,4 +383,37 @@ class Player:
                 elif move == 4:
 
                     self.cards = [[self.cards[0]], [self.cards[1],[],[]]]
+                    self.splited_total = [self.cards[0].value, self.cards[1].value,0, 0]
+
+                    self.money -= self.round_bet
+
+                    print(f"\nSplit!!!\nYour money: {self.money}")
+                    print(f"\nHand 1: {self.cards[0]}")
+                    print(f"\nHand 2: {self.cards[1]}")
+
+                    hand = 1
+
+                    while True:
+
+                        print("\n1 - Hit\n2 - Stay")
+
+                        try:
+
+                            move = int(input(f"Your move on hand {hand}: "))
+
+                            if not(move in [1,2]):
+
+                                print("\nHey, enter a valid choice")
+                                x = 1/0
+
+                        
+                        except:
+
+                            continue
+
+                        else:
+
+                            if move == 1:
+
+                                pass
                     
