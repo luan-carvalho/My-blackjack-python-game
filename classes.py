@@ -111,7 +111,7 @@ class Dealer:
 
             aces = [card for card in player.cards if card.rank == "Ace" and card.ace_changed == False] # list with all aces that are not 1 yet
 
-            while player.total > 21 and len(aces) != 0 and aces[-1].ace_changed == False:
+            while player.total > 21 and len(aces) != 0:
 
                 player.total -= 10
                 aces[-1].ace_changed = True
