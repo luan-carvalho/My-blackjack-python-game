@@ -113,11 +113,12 @@ class Dealer:
 
             while player.total > 21 and len(aces) != 0:
 
+                print(f"\nYour cards: {player.cards}")
+
                 player.total -= 10
                 aces[-1].ace_changed = True
                 aces.pop(-1)
 
-                print(f"\nYour cards: {player.cards}")
                 print(f"\n## Ace value changed to 1 ##")
 
             else:
@@ -263,10 +264,10 @@ class Player:
                         print("\nHey, you don't have money for a double-down.")
                         x = 1/0
 
-                    elif move == 4 and (self.cards[0].rank != self.cards[1].rank or self.money < self.bet):
+                    elif move == 4 and self.money < self.round_bet:
 
                         print(
-                            "\nHey, you can't split. Check your hand or your money.")
+                            "\nHey, you don't have money to split your hand.")
                         x = 1/0
 
                 else:
@@ -361,4 +362,5 @@ class Player:
 
                 elif move == 4:
 
-                    break
+                    self.cards = [[self.cards[0]], [self.cards[1],[],[]]]
+                    
