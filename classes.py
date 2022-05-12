@@ -138,17 +138,17 @@ class Dealer:
     def split_dealing(self, player, hand):
 
         player.cards[hand-1].append(self.deck.get_one_card())
-        player.splited_total[hand-1] += player.cards[hand-1][-1].value 
+        player.total[hand-1] += player.cards[hand-1][-1].value 
 
         aces = [card for card in player.cards[hand-1]
                 if card.rank == "Ace" and card.change_value == False]
 
-        while player.splited_total[hand-1] > 21 and len(aces) != 0:
+        while player.total[hand-1] > 21 and len(aces) != 0:
 
             print(
-                f"\nHand {hand}: {player.cards[hand-1]} ({player.splited_total[hand-1]})")
+                f"\nHand {hand}: {player.cards[hand-1]} ({player.total[hand-1]})")
 
-            player.splited_total[hand-1] -= 10
+            player.total[hand-1] -= 10
             aces[-1].change_value = True
 
             print("\n## Ace value changed to 1 ##")
@@ -156,7 +156,7 @@ class Dealer:
         else:
 
             print(
-                f"\nHand {hand}: {player.cards[hand-1]} ({player.splited_total[hand-1]})")
+                f"\nHand {hand}: {player.cards[hand-1]} ({player.total[hand-1]})")
 
     def get_cards(self):
 
@@ -386,31 +386,49 @@ class Player:
 
                 elif move == 4:
 
-                    self.splited_total = [
+                    self.total = [
                         self.cards[0].value, self.cards[1].value, 0, 0]
 
-                    self.cards = [[self.cards[0]], [self.cards[1]],[],[]]
+                    self.cards = [[self.cards[0]], [self.cards[1]]]
+
+                    self.cards[0].append(dealer.deck.get_one_card())
+
+                    self.total[0] += self.cards[0][-1].value
 
                     self.money -= self.round_bet
 
                     print(f"\nSplit!!!\nYour money: {self.money}")
-                    print(f"\nHand 1: {self.cards[0]}")
-                    print(f"\nHand 2: {self.cards[1]}")
+                    print(f"\nHand 1: {self.cards[0]} ({self.total[0]})")
+                    print(f"\nHand 2: {self.cards[1]} ({self.total[1]})")
 
                     hand = 1
 
                     while True:
-                        
-                        print("\n1 - Hit\n2 - Stay")
 
                         try:
 
-                            move = int(input(f"\nYour move on hand {hand}: "))
+                            if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank:
 
-                            if not(move in [1, 2]):
+                                print("\n1 - Hit\n2 - Stay\n3 - Split")
 
-                                print("\nHey, enter a valid choice")
-                                x = 1/0
+                                move = int(input(f"\nYour move on hand {hand}: "))
+
+                                if not(move in [1, 2]):
+
+                                    print("\nHey, enter a valid choice")
+                                    x = 1/0
+
+
+                            else:
+
+                                print("\n1 - Hit\n2 - Stay")
+
+                                move = int(input(f"\nYour move on hand {hand}: "))
+
+                                if not(move in [1, 2]):
+
+                                    print("\nHey, enter a valid choice")
+                                    x = 1/0
 
                         except:
 
@@ -422,12 +440,12 @@ class Player:
 
                                 dealer.split_dealing(self, hand)
 
-                                if self.splited_total[hand-1] > 21:
+                                if self.total[hand-1] > 21:
 
                                     print(f"Hand {hand} busted!!!")
-                                    self.splited_total[hand-1] = 0
+                                    self.total[hand-1] = 0
 
-                                    if hand != 4:
+                                    if hand < len(self.cards):
 
                                         hand += 1
                                         continue
@@ -440,7 +458,7 @@ class Player:
 
                             elif move == 2:
                                 
-                                if hand != 4:
+                                if hand < len(self.cards):
                                     
                                     print(f"\nStay in hand {hand}")
                                     hand += 1
@@ -448,7 +466,7 @@ class Player:
 
                                 else:
 
-                                    print("\nStay in hand 4")
+                                    print(f"\nStay in hand {hand}")
                                     break
 
                     break
