@@ -407,7 +407,7 @@ class Player:
 
                         try:
 
-                            if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank:
+                            if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank and len(self.cards[hand-1]) == 2:
 
                                 print("\n1 - Hit\n2 - Stay\n3 - Split")
 
@@ -485,4 +485,21 @@ class Player:
                                     print(f"\nStay in hand {hand}")
                                     break
 
-                    break
+
+                            elif move == 3:
+
+                                self.cards.append([])
+                                self.cards[-1] = [self.cards[hand-1][1]]
+                                self.cards[hand-1] = [self.cards[hand-1][0]]
+                                self.total[hand-1] = self.cards[hand-1][0].value
+                                self.total[len(self.cards-1)] = self.cards[-1][0].value 
+                                
+
+                                for i in range(len(self.cards)):
+                                    
+                                    print(f"\nHand {i+1}: {self.cards[i]} ({self.total[i]})")
+                            
+
+
+
+                    break   
