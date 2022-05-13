@@ -209,22 +209,58 @@ class Dealer:
 
         # checking when the player did not split hands
 
-        if player.total > self.total:
+        if type(player.total) == int:
 
-            print("\nYou win!!!")
-            player.money += player.round_bet*2
-            print(f"Your money: {player.money}")
+            if player.total > self.total:
 
-        elif player.total < self.total:
+                print("\nYou win!!!")
+                player.money += player.round_bet*2
+                print(f"Your money: {player.money}")
 
-            print("\nYou lose!!!")
-            print(f"Your money: {player.money}")
+            elif player.total < self.total:
 
-        elif player.total == self.total:
+                print("\nYou lose!!!")
+                print(f"Your money: {player.money}")
 
-            print("\nPush!!!")
-            player.money += player.round_bet
-            print(f"Player money: {player.money}")
+            elif player.total == self.total:
+
+                print("\nPush!!!")
+                player.money += player.round_bet
+                print(f"Player money: {player.money}")
+
+        elif type(player.total) == list:
+
+            hand = 1
+
+            for total in player.total:
+
+                if total == 0:
+
+                    hand += 1
+                    continue
+
+                elif total > self.total:
+
+                    print(f"\nHand {hand} wins!!!")
+                    player.money += player.round_bet*2
+                    print(f"\nYour money: {player.money}")
+                    hand += 1
+                    continue
+
+                elif total < self.total:
+
+                    print(f"\nHand {hand} loses!!!")
+                    print(f"\nYour money: {player.money}")
+                    hand += 1
+                    continue
+
+                elif total == self.total:
+
+                    print(f"\nHand {hand} push!!!")
+                    player.money += player.round_bet
+                    print(f"\nYour money: {player.money}")
+                    hand += 1
+                    continue
 
 
 class Player:
@@ -398,8 +434,6 @@ class Player:
                     self.money -= self.round_bet
 
                     print(f"\nSplit!!!\n\nYour money: {self.money}")
-                    print(f"\nHand 1: {self.cards[0]} ({self.total[0]})")
-                    print(f"\nHand 2: {self.cards[1]} ({self.total[1]})")
 
                     hand = 1
 
@@ -407,7 +441,8 @@ class Player:
 
                         try:
 
-                            # print(f"\nHand {hand}: {self.cards[hand-1]} ({self.total[hand-1]})")
+                            print(
+                                f"\nHand {hand}: {self.cards[hand-1]} ({self.total[hand-1]})")
 
                             if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank and len(self.cards[hand-1]) == 2:
 
@@ -423,7 +458,8 @@ class Player:
 
                                 elif self.money < self.round_bet:
 
-                                    print("\nHey, you don't have money for splitting")
+                                    print(
+                                        "\nHey, you don't have money for splitting")
                                     x = 1/0
                             else:
 
@@ -479,8 +515,6 @@ class Player:
                                                1].append(dealer.deck.get_one_card())
                                     self.total[hand -
                                                1] += self.cards[hand-1][-1].value
-                                    print(
-                                        f"\nHand {hand}: {self.cards[hand-1]}")
 
                                     continue
 
@@ -489,24 +523,23 @@ class Player:
                                     print(f"\nStay in hand {hand}")
                                     break
 
-
                             elif move == 3:
 
                                 self.cards.append([])
                                 self.cards[-1] = [self.cards[hand-1][1]]
                                 self.cards[hand-1] = [self.cards[hand-1][0]]
-                                self.total[hand-1] = self.cards[hand-1][0].value
-                                self.total[len(self.cards)-1] = self.cards[-1][0].value 
+                                self.total[hand -
+                                           1] = self.cards[hand-1][0].value
+                                self.total[len(self.cards) -
+                                           1] = self.cards[-1][0].value
                                 self.money -= self.round_bet
 
-                                self.cards[hand-1].append(dealer.deck.get_one_card())
-                                self.total[hand-1] += self.cards[hand-1][-1].value
-                                
-                                for i in range(len(self.cards)):
+                                self.cards[hand -
+                                           1].append(dealer.deck.get_one_card())
+                                self.total[hand -
+                                           1] += self.cards[hand-1][-1].value
 
-                                    print(f"\nHand {i+1}: {self.cards[i]} ({self.total[i]})")
-                            
+                                print("\nSplit!!!!")
+                                print(f"\nYour money: {self.money}")
 
-
-
-                    break   
+                    break
