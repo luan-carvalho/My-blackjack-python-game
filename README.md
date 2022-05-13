@@ -47,8 +47,8 @@ A text-based Blackjack `Python` game.
 # Payouts
 
 - When the player beats the dealer, he wins and gets an equal amount of what he just bet
-- If the player has the same amount than the dealer's, he just get his money back
+- If the player has the same amount than the dealer's, he just gets his money back
 - If the dealer gets closer to 21 than the player, the player loses his entire bet
-- If the player gets an ace and a ten-value card in his first two cards, he wins automatically and gets paid 3:2. It's called a Blackjack.
+- If the player gets an ace and a ten-value card in his first two cards, he wins automatically and gets paid 3:2. It's called a Blackjack
 
 # Player actions
