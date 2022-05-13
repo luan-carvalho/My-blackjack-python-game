@@ -187,7 +187,7 @@ class Dealer:
 
         else:
 
-            print("\nThe dealer stays")
+            print("\nThe dealer stands")
 
     def check_blackjack(self, player):
 
@@ -310,7 +310,7 @@ class Player:
 
                 if self.cards[0].rank == self.cards[1].rank:
 
-                    print("\n1 - Hit\n2 - Stay\n3 - Double-down\n4 - Split")
+                    print("\n1 - Hit\n2 - Stand\n3 - Double-down\n4 - Split")
 
                     move = int(input("\nYour move: "))
 
@@ -332,7 +332,7 @@ class Player:
 
                 else:
 
-                    print("\n1 - Hit\n2 - Stay\n3 - Double-down")
+                    print("\n1 - Hit\n2 - Stand\n3 - Double-down")
 
                     move = int(input("\nYour move: "))
 
@@ -364,7 +364,7 @@ class Player:
 
                     while True:
 
-                        print("\n1 - Hit\n2 - Stay")
+                        print("\n1 - Hit\n2 - Stand")
 
                         try:
 
@@ -395,14 +395,14 @@ class Player:
 
                             if move == 2:
 
-                                print("\nYou stay.")
+                                print("\nYou stand.")
                                 break
 
                     break
 
                 elif move == 2:
 
-                    print("\nYou stay.")
+                    print("\nYou stand.")
                     break
 
                 elif move == 3:
@@ -446,7 +446,7 @@ class Player:
 
                             if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank and len(self.cards[hand-1]) == 2:
 
-                                print("\n1 - Hit\n2 - Stay\n3 - Split")
+                                print("\n1 - Hit\n2 - Stand\n3 - Split")
 
                                 move = int(
                                     input(f"\nYour move on hand {hand}: "))
@@ -463,7 +463,7 @@ class Player:
                                     x = 1/0
                             else:
 
-                                print("\n1 - Hit\n2 - Stay")
+                                print("\n1 - Hit\n2 - Stand")
 
                                 move = int(
                                     input(f"\nYour move on hand {hand}: "))
@@ -509,7 +509,7 @@ class Player:
 
                                 if hand < len(self.cards):
 
-                                    print(f"\nStay in hand {hand}")
+                                    print(f"\nStand in hand {hand}")
                                     hand += 1
                                     self.cards[hand -
                                                1].append(dealer.deck.get_one_card())
@@ -520,7 +520,7 @@ class Player:
 
                                 else:
 
-                                    print(f"\nStay in hand {hand}")
+                                    print(f"\nStand in hand {hand}")
                                     break
 
                             elif move == 3:
