@@ -232,7 +232,7 @@ class Player:
     def __init__(self):
 
         self.cards = []
-        self.money = 1000
+        self.money = 1500
         self.round_bet = 0
         self.total = 0  # Attribute to track the hand total value
 
@@ -397,7 +397,7 @@ class Player:
 
                     self.money -= self.round_bet
 
-                    print(f"\nSplit!!!\nYour money: {self.money}")
+                    print(f"\nSplit!!!\n\nYour money: {self.money}")
                     print(f"\nHand 1: {self.cards[0]} ({self.total[0]})")
                     print(f"\nHand 2: {self.cards[1]} ({self.total[1]})")
 
@@ -407,6 +407,8 @@ class Player:
 
                         try:
 
+                            # print(f"\nHand {hand}: {self.cards[hand-1]} ({self.total[hand-1]})")
+
                             if self.cards[hand-1][0].rank == self.cards[hand-1][1].rank and len(self.cards[hand-1]) == 2:
 
                                 print("\n1 - Hit\n2 - Stay\n3 - Split")
@@ -414,11 +416,15 @@ class Player:
                                 move = int(
                                     input(f"\nYour move on hand {hand}: "))
 
-                                if not(move in [1, 2]):
+                                if not(move in [1, 2, 3]):
 
                                     print("\nHey, enter a valid choice")
                                     x = 1/0
 
+                                elif self.money < self.round_bet:
+
+                                    print("\nHey, you don't have money for splitting")
+                                    x = 1/0
                             else:
 
                                 print("\n1 - Hit\n2 - Stay")
@@ -432,10 +438,8 @@ class Player:
                                     x = 1/0
 
                         except:
-                            print("aaaaaaa")
 
-                            # continue
-                            break
+                            continue
 
                         else:
 
@@ -456,7 +460,7 @@ class Player:
                                         self.total[hand -
                                                    1] += self.cards[hand-1][-1].value
                                         print(
-                                            f"\nHand {hand}: {self.cards[hand-1]}")
+                                            f"\nHand {hand}: {self.cards[hand-1]} ({self.total[hand-1]})")
                                         continue
 
                                     else:
@@ -492,11 +496,14 @@ class Player:
                                 self.cards[-1] = [self.cards[hand-1][1]]
                                 self.cards[hand-1] = [self.cards[hand-1][0]]
                                 self.total[hand-1] = self.cards[hand-1][0].value
-                                self.total[len(self.cards-1)] = self.cards[-1][0].value 
-                                
+                                self.total[len(self.cards)-1] = self.cards[-1][0].value 
+                                self.money -= self.round_bet
 
+                                self.cards[hand-1].append(dealer.deck.get_one_card())
+                                self.total[hand-1] += self.cards[hand-1][-1].value
+                                
                                 for i in range(len(self.cards)):
-                                    
+
                                     print(f"\nHand {i+1}: {self.cards[i]} ({self.total[i]})")
                             
 
