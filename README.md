@@ -1,4 +1,5 @@
-![_♠️_Blackjack_♦️](https://user-images.githubusercontent.com/55687321/168382865-9c5d6171-ef92-4e6e-b1ac-87bb2fdddd34.png)
+![♥️_Blackjack_♠️](https://user-images.githubusercontent.com/55687321/168387175-5fef5eb1-e057-4db4-9c31-81a9f18dbd3f.png)
+
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
