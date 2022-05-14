@@ -2,6 +2,7 @@
 from classes import *
 from time import sleep
 
+
 def screen_break():
 
     print("\n")
@@ -12,12 +13,13 @@ def screen_break():
 
 # 1 Create the dealer and the player
 
+
 dealer = Dealer()
 player = Player()
 
 screen_break()
 
-print("Welcome to the Monkey's cassino!! This is a Blackjack table.\n\nThe minimal bet is $300.")
+print("\nWelcome to the Monkey's cassino!! This is a Blackjack table.\n\nThe minimal bet is $300.")
 print(f"\nYou have ${player.money}")
 
 screen_break()
@@ -74,7 +76,7 @@ while player.money > min_bet:
 
     player.play(dealer)
 
-    if player.total > 21 or len([total for total in player.total > 21]) != 0:
+    if type(player.total) == int and player.total > 21:
 
         screen_break()
         sleep(2)
@@ -86,6 +88,21 @@ while player.money > min_bet:
         else:
 
             break
+
+    elif type(player.total) == list:
+
+        if len([x for x in player.total if x == 0]) == 4:
+
+            screen_break()
+            sleep(2)
+
+            if repeat(player, dealer):
+
+                continue
+
+            else:
+
+                break
 
     # 6 Dealer reveals his card
 
