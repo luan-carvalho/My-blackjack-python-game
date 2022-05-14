@@ -329,6 +329,8 @@ class Player:
 
     def play(self, dealer: Dealer):
 
+        print(f"Your cards: {self.cards} ({self.total})")
+
         while True:
 
             try:
