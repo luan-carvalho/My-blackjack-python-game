@@ -205,8 +205,8 @@ class Dealer:
                 if self.total > 21:
 
                     print("\nThe dealer busted!!!")
-                    player.money += player.round_bet*2
-                    print(f"\nYour money: {player.money}")
+                    player.g += player.round_bet*2
+                    print(f"\nYour money: ${player.money}")
                     break
             
 
@@ -222,7 +222,7 @@ class Dealer:
 
             player.money += player.round_bet*2.5
 
-            print(f"\nYour money: {player.money}")
+            print(f"\nYour money: ${player.money}")
 
             return True
 
@@ -240,18 +240,18 @@ class Dealer:
 
                 print("\nYou win!!!")
                 player.money += player.round_bet*2
-                print(f"Your money: {player.money}")
+                print(f"Your money: ${player.money}")
 
             elif player.total < self.total:
 
                 print("\nYou lose!!!")
-                print(f"Your money: {player.money}")
+                print(f"Your money: ${player.money}")
 
             elif player.total == self.total:
 
                 print("\nPush!!!")
                 player.money += player.round_bet
-                print(f"Player money: {player.money}")
+                print(f"Player money: ${player.money}")
 
         elif type(player.total) == list:
 
@@ -268,14 +268,14 @@ class Dealer:
 
                     print(f"\nHand {hand} wins!!!")
                     player.money += player.round_bet*2
-                    print(f"\nYour money: {player.money}")
+                    print(f"\nYour money: ${player.money}")
                     hand += 1
                     continue
 
                 elif total < self.total:
 
                     print(f"\nHand {hand} loses!!!")
-                    print(f"\nYour money: {player.money}")
+                    print(f"\nYour money: ${player.money}")
                     hand += 1
                     continue
 
@@ -283,7 +283,7 @@ class Dealer:
 
                     print(f"\nHand {hand} push!!!")
                     player.money += player.round_bet
-                    print(f"\nYour money: {player.money}")
+                    print(f"\nYour money: ${player.money}")
                     hand += 1
                     continue
 
@@ -324,7 +324,7 @@ class Player:
                 self.round_bet = bet
                 self.money -= self.round_bet
                 print(
-                    f"\nYour money: {self.money}\nYour round bet: {self.round_bet}")
+                    f"\nYour money: ${self.money}\nYour round bet: ${self.round_bet}")
                 break
 
     def play(self, dealer: Dealer):
@@ -384,7 +384,7 @@ class Player:
                     if self.total > 21:
 
                         print("\nYou busted!!!")
-                        print(f"\nYour money: {self.money}")
+                        print(f"\nYour money: ${self.money}")
                         break
 
                     while True:
@@ -413,7 +413,7 @@ class Player:
                                 if self.total > 21:
 
                                     print("\nYou busted!!!")
-                                    print(f"Your money: {self.money}")
+                                    print(f"Your money: ${self.money}")
                                     break
 
                                 continue
@@ -435,7 +435,7 @@ class Player:
                     self.money -= self.round_bet
                     self.round_bet = self.round_bet*2
                     print(
-                        f"\nDouble-down!!\n\nYour money: {self.money}\nYour round bet: {self.round_bet}")
+                        f"\nDouble-down!!\n\nYour money: ${self.money}\nYour round bet: ${self.round_bet}")
                     dealer.deal_cards(self, 1)
 
                     if self.total > 21:
@@ -458,7 +458,7 @@ class Player:
 
                     self.money -= self.round_bet
 
-                    print(f"\nSplit!!!\n\nYour money: {self.money}")
+                    print(f"\nSplit!!!\n\nYour money: ${self.money}")
 
                     hand = 1
 
@@ -565,6 +565,6 @@ class Player:
                                            1] += self.cards[hand-1][-1].value
 
                                 print("\nSplit!!!!")
-                                print(f"\nYour money: {self.money}")
+                                print(f"\nYour money: ${self.money}")
 
                     break
