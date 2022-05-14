@@ -170,10 +170,20 @@ class Dealer:
 
         import time
 
+        aces = [card for card in self.cards if card.rank == "Ace" and card.change_value == False]
+
         self.cards[0].face_up = True
         print(f"\nDealer cards: {self.cards} ({self.total})")
 
+        if self.total and len(aces) > 21:
+
+            self.total -= 10
+            print("\n## Ace value changed to 1 ##")
+            print(f"\nDealer cards: {self.cards} ({self.total})")
+
         while self.total <= 16:
+
+            aces = [card for card in self.cards if card.rank == "Ace" and card.change_value == False]
 
             time.sleep(2)
 
@@ -182,12 +192,23 @@ class Dealer:
             self.total += self.cards[-1].value
             print(f"\nDealer cards: {self.cards} ({self.total})")
 
-            if self.total > 21:
+            while self.total > 21 and len(aces) != 0:
 
-                print("\nThe dealer busted!!!")
-                player.money += player.round_bet*2
-                print(f"\nYour money: {player.money}")
-                break
+                
+                self.total -= 10
+                aces[-1].change_value = True 
+                print("\n## Ace value changed to 1 ##")
+                print(f"\nDealer cards: {self.cards} ({self.total})")
+
+            else:
+
+                if self.total > 21:
+
+                    print("\nThe dealer busted!!!")
+                    player.money += player.round_bet*2
+                    print(f"\nYour money: {player.money}")
+                    break
+            
 
         else:
 
