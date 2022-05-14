@@ -5,7 +5,7 @@ from time import sleep
 def screen_break():
 
     print("\n")
-    print("#"*50)
+    print("#"*100Up)
     print("\n")
 
 # Game logic
