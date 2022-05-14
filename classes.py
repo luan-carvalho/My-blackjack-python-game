@@ -205,7 +205,7 @@ class Dealer:
                 if self.total > 21:
 
                     print("\nThe dealer busted!!!")
-                    player.g += player.round_bet*2
+                    player.round_bet += player.round_bet*2
                     print(f"\nYour money: ${player.money}")
                     break
             
