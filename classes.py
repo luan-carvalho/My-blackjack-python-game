@@ -168,15 +168,19 @@ class Dealer:
 
     def reveal_card(self, player):
 
+        import time
+
         self.cards[0].face_up = True
-        print(f"\nDealer cards: {self.cards}")
+        print(f"\nDealer cards: {self.cards} ({self.total})")
 
         while self.total <= 16:
+
+            time.sleep(2)
 
             print("\nThe dealer hits")
             self.cards.append(self.deck.get_one_card())
             self.total += self.cards[-1].value
-            print(f"\nDealer cards: {self.cards}")
+            print(f"\nDealer cards: {self.cards} ({self.total})")
 
             if self.total > 21:
 
