@@ -74,7 +74,7 @@ while player.money > min_bet:
 
     player.play(dealer)
 
-    if player.total > 21:
+    if player.total > 21 or len([total for total in player.total > 21]) != 0:
 
         screen_break()
         sleep(2)
