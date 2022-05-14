@@ -13,7 +13,7 @@ def repeat(player, dealer):
 
         try:
 
-            print("\nDo you want to play again?\n1 - Yes\n2 - No")
+            print("\nDo you want to play again?\n\n1 - Yes\n2 - No")
 
             ask = int(input("\nYour choice: "))
 
@@ -115,7 +115,7 @@ class Dealer:
 
             while player.total > 21 and len(aces) != 0:
 
-                print(f"\nYour cards: {player.cards}")
+                print(f"\nYour cards: {player.cards} ({player.cards})")
 
                 player.total -= 10
                 aces[-1].change_value = True

@@ -5,7 +5,7 @@ from time import sleep
 def screen_break():
 
     print("\n")
-    print("#"*100Up)
+    print("#"*100)
     print("\n")
 
 # Game logic
@@ -15,7 +15,7 @@ def screen_break():
 dealer = Dealer()
 player = Player()
 
-print("\nWelcome to the Monkey's cassino!! This is a Blackjack table. The minimal bet is $300.")
+print("\nWelcome to the Monkey's cassino!! This is a Blackjack table.\n\nThe minimal bet is $300.")
 print(f"\nYou have {player.money}")
 
 screen_break()
@@ -74,6 +74,9 @@ while player.money > min_bet:
 
     if player.total > 21:
 
+        screen_break()
+        sleep(2)
+
         if repeat(player, dealer):
 
             continue
@@ -93,6 +96,9 @@ while player.money > min_bet:
     dealer.reveal_card(player)
 
     if dealer.total > 21:
+
+        screen_break()
+        sleep(2)
 
         if repeat(player, dealer):
 
