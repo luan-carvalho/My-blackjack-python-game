@@ -15,8 +15,10 @@ def screen_break():
 dealer = Dealer()
 player = Player()
 
-print("\nWelcome to the Monkey's cassino!! This is a Blackjack table.\n\nThe minimal bet is $300.")
-print(f"\nYou have {player.money}")
+screen_break()
+
+print("Welcome to the Monkey's cassino!! This is a Blackjack table.\n\nThe minimal bet is $300.")
+print(f"\nYou have ${player.money}")
 
 screen_break()
 
