@@ -116,6 +116,6 @@ A text-based Blackjack `Python` game.
 
 - If the ace makes the hand bust, it automatically is going to worth 1
 
-- If the hand has an ace and another card makes the hand bust, the ace will automatically woth 1
+- If the hand has an ace and another card makes the hand bust, the ace will automatically worth 1
 
 ![Screen Shot 2022-05-15 at 02 34 40](https://user-images.githubusercontent.com/55687321/168458711-ccaf9da0-a74d-44db-8095-89d6b8440e77.png)
