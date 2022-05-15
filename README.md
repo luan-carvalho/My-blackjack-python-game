@@ -18,7 +18,7 @@ A text-based Blackjack `Python` game.
 
 - To play it, you must have Python installed on your machine (you can download it [here](https://www.python.org/downloads/))
 
-- After installing, you will download this repository into your machine
+- After installing, you need to download this repository into your machine
 
 ![Screen Shot 2022-05-15 at 01 12 17](https://user-images.githubusercontent.com/55687321/168457048-c1617234-558c-4941-b390-21aa9e03a0b7.png)
 
