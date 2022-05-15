@@ -36,10 +36,10 @@ A text-based Blackjack `Python` game.
 - After betting, the dealer deals two cards to the player and to himself
 - One of dealer's card is face-down and the other is face-up
 - Then, the player can choose between the following moves:
-    - Hit
-    - Stand
-    - Double-down
-    - Split
+    - `Hit`
+    - `Stand`
+    - `Double-down`
+    - `Split`
 - After that, the dealer reveals his face-down card
 - If the dealer has less than 17 points, he must hit until gets a 17 or greater
 - When he gets 17 points, he must stand
@@ -49,6 +49,6 @@ A text-based Blackjack `Python` game.
 - When the player beats the dealer, he wins and gets an equal amount of what he just bet
 - If the player has the same amount than the dealer's, he just gets his money back
 - If the dealer gets closer to 21 than the player, the player loses his entire bet
-- If the player gets an ace and a ten-value card in his first two cards, he wins automatically and gets paid 3:2. It's called a Blackjack
+- If the player gets an ace and a ten-value card in his first two cards, he wins automatically and gets paid 3:2. It's called a `Blackjack`
 
 # Player actions
