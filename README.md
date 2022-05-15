@@ -14,7 +14,12 @@ A text-based Blackjack `Python` game.
 - [Payouts](#Payouts)
 - [Player actions](#Player-actions)
 
+# How to install and play it
 
+- To play it, you must have Python installed on your machine (you can download it [here](https://www.python.org/downloads/))
+- After installing, you will download this repository into your machine
+- Unzip the file, open the folder and open the "game.py" file
+- It will open Python IDLE (or your text editor) and you can run it
 # The goal of Blackjack
 
 - In Blackjack, the main goal is to get closer to 21 than the dealer without going over 21
