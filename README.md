@@ -1,6 +1,5 @@
 ![♥️_Blackjack_♠️](https://user-images.githubusercontent.com/55687321/168387175-5fef5eb1-e057-4db4-9c31-81a9f18dbd3f.png)
 
-
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
 A text-based Blackjack `Python` game.
