@@ -52,7 +52,7 @@ A text-based Blackjack `Python` game.
   2 points)
 
 - Jacks, Queens and Kings are going to worth 10 points each
-- Aces can worth 1 or 11, depending on what is best for the hand
+- Aces can worth 1 or 11, depending on what is best for the hand (explanation [here](#Ace-value)
 
 # The game logic
 
@@ -105,6 +105,7 @@ A text-based Blackjack `Python` game.
 
   - It's only allowed if the player can pay another bet of the same value of the first bet for the new hand
   - The player can split his cards up to a maximun of 3 times (to play a total of 4 hands)
+  - Better explanation [here](https://www.youtube.com/watch?v=gh2FijxPo24)
 
 ![Screen Shot 2022-05-15 at 02 27 58](https://user-images.githubusercontent.com/55687321/168458556-c4dd7e2a-5133-40ee-9c08-8e459b04663c.png)
 
