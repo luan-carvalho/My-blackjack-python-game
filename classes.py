@@ -115,7 +115,7 @@ class Dealer:
 
             while player.total > 21 and len(aces) != 0:
 
-                print(f"\nYour cards: {player.cards} ({player.cards})")
+                print(f"\nYour cards: {player.cards} ({player.total})")
 
                 player.total -= 10
                 aces[-1].change_value = True
