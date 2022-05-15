@@ -26,7 +26,7 @@ A text-based Blackjack `Python` game.
 
 ![Screen Shot 2022-05-15 at 01 15 06](https://user-images.githubusercontent.com/55687321/168457135-70c6a4eb-1b15-485c-866f-9fab9dcb13aa.png)
 
-- It will open Python IDLE and you can run it (search for similar options on Windows)
+- It will open the Python IDLE and you can run it (search for similar options on Windows)
 
 ![Screen Shot 2022-05-15 at 01 16 15](https://user-images.githubusercontent.com/55687321/168457153-1ee4f76b-a7f9-4935-829b-fc26b360da57.png)
 
